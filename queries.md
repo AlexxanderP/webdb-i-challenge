@@ -16,6 +16,8 @@ SELECT \* FROM Suppliers where SupplierId = 11 <!-- to get all information>
 
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
 
+SELECT \* FROM orders order by orderDate desc
+
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
 ## find all customers that include the word "market" in the name. Should return 4 records.
