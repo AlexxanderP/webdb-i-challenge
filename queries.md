@@ -10,9 +10,9 @@ SELECT \* FROM Customers WHERE PostalCode = '1010'
 
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
 
-SELECT Phone FROM Suppliers where SupplierId = 11 <!-- to get phone only>
+SELECT Phone FROM Suppliers WHERE SupplierId = 11 <!-- to get phone only>
 
-SELECT \* FROM Suppliers where SupplierId = 11 <!-- to get all information>
+SELECT \* FROM Suppliers WHERE SupplierId = 11 <!-- to get all information>
 
 ## list orders descending by the order date. The order with date 1997-02-12 should be at the top.
 
@@ -20,15 +20,19 @@ SELECT \* FROM orders order by orderDate desc
 
 ## find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name. Returns 11 records.
 
+SELECT \* FROM Suppliers WHERE length(SupplierName) > 20
+
 ## find all customers that include the word "market" in the name. Should return 4 records.
 
-SELECT \* FROM customers where customerName like '%market%'
+SELECT \* FROM customers WHERE customerName like '%market%'
 
 <!-- STRETCH -->
 
 ## add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+
+UPDATE customers set PostalCode = 11122 WHERE ContactName = 'Bilbo Baggins'
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
 
@@ -37,3 +41,6 @@ SELECT \* FROM customers where customerName like '%market%'
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
 
 ## delete all users that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
+
+DELETE FROM Customers
+WHERE CustomerID NOT IN (SELECT CustomerID FROM Orders)
